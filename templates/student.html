@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NuCard Data Viz</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js" integrity="sha512-Lii3WMtgA0C0qmmkdCpsG0Gjr6M0ajRyQRQSbTF6BsrVh/nhZdHpVZ76iMIPvQwz1eoXC3DmAg9K51qT5/dEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-title">
+        <h2>NuCard Data Viz</h2>
+      </div>
+      <div class="header-nav">
+        <button id="setCurrentUser" onClick="setCurrentUser(-1)">Coach</button>
+        <button id="setCurrentUser" onClick="setCurrentUser(0)">Student 0</button>
+        <button id="setCurrentUser" onClick="setCurrentUser(1)">Student 1</button>
+      </div>
+    </div>
+    <div class="top-cardholders">
+      <h2>Top 10 Cardholders</h2>
+      <div>
+        <canvas id="top-cardholders"></canvas>
+      </div>
+    </div>
+    </div>
+    <div class="wrapper">
+      <div class="box rect">
+        <h1>Personal Attendance</h1>
+        <div class="menu">
+          <button id="focus" onClick="changeFocusTime('all')">All</button>
+          <button id="focus" onClick="changeFocusTime('am')">AM</button>
+          <button id="focus" onClick="changeFocusTime('pm')">PM</button>
+          <button id="styleSwitch" onClick="changeChartStyle('line')">Line</button>
+          <button id="styleSwitch" onClick="changeChartStyle('area')">Area</button>
+        </div>
+        <canvas id="attendanceAreaChart"></canvas>
+      </div>
+      <div class="box square"><canvas id="latenessDoughnutChart"></canvas></div>
+    </div>
+  </body>
+  <script src="/static/utility.js"></script>
+  <script src="/static/loadData.js"></script>
+
+  <script src="/static/charts/latenessAreaChart.js"></script>
+  <script src="/static/charts/attendanceAreaChart.js"></script>
+<!--  <script src="/static/charts/latenessDoughnutChart.js"></script> -->
+</html>

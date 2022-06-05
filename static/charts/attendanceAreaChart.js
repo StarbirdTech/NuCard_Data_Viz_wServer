@@ -51,14 +51,14 @@ function makeAttendanceAreaChart() {
         {
           label: "Your Arrival",
           //data: [ 480, 525, 525, 525 ],
-          data: packagedAttendanceData[0],
+          data: testAtdData[0],
           backgroundColor: color.Clear,
           borderColor: color.Clear,
           fill: {target: {value: 540}, above: color.Red, below: color.Green}
         },
         {
           label: "Your Departure",
-          data: packagedAttendanceData[1],
+          data: testAtdData[1],
           backgroundColor: color.Clear,
           borderColor: color.Clear,
           fill: {target: {value: 890}, above: color.Green, below: color.Red},
@@ -88,7 +88,7 @@ function makeAttendanceAreaChart() {
       },
       scales: {
         y: {
-          min: 480,
+          //min: 480,
           max: 960,
           ticks: {
             callback: (v, i) => this.displayDataAsString(v, i),

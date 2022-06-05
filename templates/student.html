@@ -1,51 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NuCard Data Viz</title>
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="icon" href="../static/favicon.ico">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js" integrity="sha512-Lii3WMtgA0C0qmmkdCpsG0Gjr6M0ajRyQRQSbTF6BsrVh/nhZdHpVZ76iMIPvQwz1eoXC3DmAg9K51qT5/dEVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  </head>
-  <body>
-    <div class="header">
-      <div class="header-title">
-        <h2>NuCard Data Viz</h2>
-      </div>
-      <div class="header-nav">
-        <button id="setCurrentUser" onClick="setCurrentUser(-1)">Coach</button>
-        <button id="setCurrentUser" onClick="setCurrentUser(0)">Student 0</button>
-        <button id="setCurrentUser" onClick="setCurrentUser(1)">Student 1</button>
-      </div>
-    </div>
-    <div class="top-cardholders">
-      <h2>Top 10 Cardholders</h2>
-      <div>
-        <canvas id="top-cardholders"></canvas>
-      </div>
-    </div>
-    </div>
-    <div class="wrapper">
-      <div class="box rect">
-        <h1>Personal Attendance</h1>
-        <div class="menu">
-          <button id="focus" onClick="changeFocusTime('all')">All</button>
-          <button id="focus" onClick="changeFocusTime('am')">AM</button>
-          <button id="focus" onClick="changeFocusTime('pm')">PM</button>
-          <button id="styleSwitch" onClick="changeChartStyle('line')">Line</button>
-          <button id="styleSwitch" onClick="changeChartStyle('area')">Area</button>
-        </div>
-        <canvas id="attendanceAreaChart"></canvas>
-      </div>
-      <div class="box square"><canvas id="latenessDoughnutChart"></canvas></div>
-    </div>
-  </body>
-  <script src="/static/utility.js"></script>
-  <script src="/static/loadData.js"></script>
 
-  <script src="/static/charts/latenessAreaChart.js"></script>
-  <script src="/static/charts/attendanceAreaChart.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NuCard Data Viz</title>
+  <link rel="stylesheet" href="../static/output.css">
+  <link rel="icon" href="../static/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"
+    integrity="sha512-Lii3WMtgA0C0qmmkdCpsG0Gjr6M0ajRyQRQSbTF6BsrVh/nhZdHpVZ76iMIPvQwz1eoXC3DmAg9K51qT5/dEVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="bg-gradient-to-b from-zinc-100 to-zinc-300 dark:from-slate-900 dark:to-zinc-900">
+  <nav class="m-8">
+    <div class="container flex flex-wrap justify-between items-center mx-auto">
+      <a href="http://127.0.0.1:5000/" class="flex items-center">
+        <img src="../static/images/profile_placeholder.png" class="mr-3 h-6 sm:h-9" alt="logo">
+        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">NuCard</span>
+      </a>
+      <div class="flex items-center md:order-2">
+        <button type="button"
+          class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
+          <span class="sr-only">Open user menu</span>
+          <img class="w-8 h-8 rounded-full" src="../static/images/profile_placeholder.png" alt="user photo">
+        </button>
+
+        <div
+          class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+          id="dropdown"
+          style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(1063.2px, 980.8px, 0px);"
+          data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top">
+          <div class="py-3 px-4">
+            <span class="block text-sm text-gray-900 dark:text-white">NuVu Student</span>
+            <span
+              class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@placeholder.com</span>
+          </div>
+          <ul class="py-1" aria-labelledby="dropdown">
+            <li>
+              <a href="#"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+            </li>
+            <li>
+              <a href="http://127.0.0.1:5000/"
+                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="block m-20">
+    <p class="text-xl font-semibold m-8">My Attendance</p>
+    <div class="flex m-8">
+      <button id="focus" onClick="changeFocusTime('all')"
+        class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">All</button>
+      <button id="focus" onClick="changeFocusTime('am')"
+        class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AM</button>
+      <button id="focus" onClick="changeFocusTime('pm')"
+        class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">PM</button>
+      <button id="styleSwitch" onClick="changeChartStyle('line')"
+        class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Line</button>
+      <button id="styleSwitch" onClick="changeChartStyle('area')"
+        class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Area</button>
+    </div>
+
+    <canvas id="attendanceAreaChart"></canvas>
+  </div>
+
+  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+</body>
+
+<script src="/static/utility.js"></script>
+<script src="/static/loadData.js"></script>
+
+<script src="/static/charts/latenessAreaChart.js"></script>
+<script src="/static/charts/attendanceTotalChart.js"></script>
+<script src="/static/charts/attendanceAreaChart.js"></script>
 <!--  <script src="/static/charts/latenessDoughnutChart.js"></script> -->
+
 </html>

@@ -1,0 +1,238 @@
+{
+    "date": "2022_05_30",
+    "students": [
+        {
+            "uid": "BLgGEAAAAQ==",
+            "name": "Amiyr Ahmad",
+            "timeIn": "8:00",
+            "timeOut": "15:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BLAGEAAAAQ==",
+            "name": "Anara Magavi",
+            "timeIn": "08:59",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BC4AEAAAAQ==",
+            "name": "Aveen Nagpal",
+            "timeIn": "08:59",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BO3/DwAAAQ==",
+            "name": "Beckett Munson",
+            "timeIn": "08:49",
+            "timeOut": "0:00",
+            "reason": "N/A",
+            "renderState": true
+        },
+        {
+            "uid": "BHIGEAAAAQ==",
+            "name": "Benjamin Sanchez",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BDYAEAAAAQ==",
+            "name": "Coffy Lessig",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BP3/DwAAAQ==",
+            "name": "Cole Krivak",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BHt6koJxgA==",
+            "name": "Elijah Rhyne",
+            "timeIn": "08:59",
+            "timeOut": "08:59",
+            "reason": "sleep"
+        },
+        {
+            "uid": "BIIGEAAAAQ==",
+            "name": "Evan Johnston",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BPX/DwAAAQ==",
+            "name": "Finn Mayeux",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BJAGEAAAAQ==",
+            "name": "Hide",
+            "timeIn": "09:9",
+            "timeOut": "0:00",
+            "reason": "transit"
+        },
+        {
+            "uid": "BHoGEAAAAQ==",
+            "name": "Hunter Stillwell",
+            "timeIn": "08:53",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BBYBEAAAAQ==",
+            "name": "Isa Murray",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BGoGEAAAAQ==",
+            "name": "Jack Vincent",
+            "timeIn": "08:46",
+            "timeOut": "08:48",
+            "reason": "N/A",
+            "renderState": true
+        },
+        {
+            "uid": "BAUAEAAAAQ==",
+            "name": "Jere Nierenberg",
+            "timeIn": "09:2",
+            "timeOut": "0:00",
+            "reason": "transit"
+        },
+        {
+            "uid": "BGIGEAAAAQ==",
+            "name": "Kody White",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BC4BEAAAAQ==",
+            "name": "Kunal Botla",
+            "timeIn": "08:54",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BDYBEAAAAQ==",
+            "name": "Lalita Bellach",
+            "timeIn": "09:6",
+            "timeOut": "0:00",
+            "reason": "transit"
+        },
+        {
+            "uid": "BCYBEAAAAQ==",
+            "name": "Max Berbeco",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BB4BEAAAAQ==",
+            "name": "Mercy Schmidt",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BN3/DwAAAQ==",
+            "name": "Nate Besthoff",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BEYAEAAAAQ==",
+            "name": "Nick Thorn",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BA0AEAAAAQ==",
+            "name": "Noelle Aminoff",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BBQAEAAAAQ==",
+            "name": "Sasha Hill",
+            "timeIn": "09:8",
+            "timeOut": "0:00",
+            "reason": "other"
+        },
+        {
+            "uid": "BJgGEAAAAQ==",
+            "name": "Schuyler Johnson",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BKAGEAAAAQ==",
+            "name": "Siena Jekel",
+            "timeIn": "08:55",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BIkGEAAAAQ==",
+            "name": "Steven Stants",
+            "timeIn": "0:00",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BOX/DwAAAQ==",
+            "name": "Teo Sadoswski",
+            "timeIn": "08:46",
+            "timeOut": "0:00",
+            "reason": "N/A",
+            "renderState": true
+        },
+        {
+            "uid": "BFoGEAAAAQ==",
+            "name": "Trevor McDonald",
+            "timeIn": "08:53",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "LbdG4Q==",
+            "name": "Verity Gould",
+            "timeIn": "08:54",
+            "timeOut": "0:00",
+            "reason": "N/A"
+        },
+        {
+            "uid": "BKgGEAAAAQ==",
+            "name": "William Fosnot",
+            "timeIn": "09:9",
+            "timeOut": "0:00",
+            "reason": "transit"
+        },
+        {
+            "uid": "zUeKJQ==",
+            "name": "Charlie Card",
+            "timeIn": "07:38",
+            "timeOut": "09:31",
+            "reason": "N/A",
+            "renderState": true
+        },
+        {
+            "uid": "BLVNMnJogA==",
+            "name": "Jack",
+            "time": "09:09:41.049751"
+        }
+    ]
+}

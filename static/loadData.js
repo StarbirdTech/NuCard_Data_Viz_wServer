@@ -1,10 +1,5 @@
 const currentUser = urlParams.get('user');
 
-function setCurrentUser(user) {
-  location.reload();
-  currentUser = user;
-}
-
 excuses = {};
 attdData = [];
 dateLabels = [];
@@ -12,7 +7,34 @@ dateLabels = [];
 packagedLatenessData = [];
 packagedAttendanceData = [];
 
+dateCounter = 0;
+dateCounterTarget = 0;
+
+let testAtdData
+
 excuseStrings = ["sleep", "transit", "other"];
+
+generateAttdData() //!
+
+function generateAttdData(result = 0) { //!
+  let dates = ["2022_05_30.json", "2022_05_31.json"] //!
+  //let datesListStr = result //!
+  //datesListStr = datesListStr.replace(/'/g, '"'); //make the text valid JSON so it can be parsed into an array //!
+  //let dates = JSON.parse(datesListStr); //!
+  //dates.reverse(); //!
+  
+  dateCounterTarget = dates.length;
+
+  for(let i = 0; i < dates.length; i++) {
+    attdData.push([])
+  }
+  for (let i = 0; i < dates.length; i++) {
+    //get the corresponding date file (JSON) from the server
+    let dates = ["2022_05_30.json", "2022_05_31.json"]
+    //httpGetAsync("http://192.168.25.6:8080/static/past_attendance/" + dates[i], addDayToData, i); //!
+    httpGetAsync("http://127.0.0.1:5000/static/piData/" + dates[i], addDayToData, i); 
+  }
+}
 
 function getDates() {
   for (let i = 0; i < attdData.length; i++) {
@@ -22,8 +44,73 @@ function getDates() {
     let d = new Date(currentDate);
     dateLabels.push(d.toLocaleString("en-US", { month: "long" }) + " " + d.getDate());
   }
-  packageLatenessData();
-  packageAttendanceData();
+  //packageLatenessData();
+
+  if (window.location.pathname == "/student/") {
+    testAtdData = packAllAtd();
+    makeAttendanceAreaChart();
+  }
+  else if (window.location.pathname == "/coach/") {
+    makeAttendanceTotalChart();
+  }
+  console.log("COMPLETE");
+}
+
+function packCompleteAtd() {
+  
+}
+
+function packAllAtd(targetStudent = currentUser) {
+  return packTotalAtd(targetStudent);
+}
+
+function packTotalAtd(targetStudent) {
+  let packedTotalAtd = [[],[]]
+  for (let i = 0; i < attdData.length; i++) {
+    let packedDailyAtd = packDailyAtd(i, targetStudent);
+    packedTotalAtd[0].push(packedDailyAtd[0][0]);
+    packedTotalAtd[1].push(packedDailyAtd[1][0]);
+  }
+  return packedTotalAtd;
+}
+
+function packDailyAtd(targetDay, targetStudent) {
+  let packedDailyAtd = [[],[]]
+  packedDailyAtd[0].push(getSpecificAttd(targetDay, targetStudent, "timeIn"));
+  packedDailyAtd[1].push(getSpecificAttd(targetDay, targetStudent, "timeOut"));
+
+  return packedDailyAtd;
+}
+
+function getSpecificAttd(targetDay, targetStudent, targetTime) {
+  let time = attdData[targetDay].students[targetStudent][targetTime];
+  if (time === "0:00") {time="12:00"}
+  let timeClass = new Date(getDateStrFromIndex(targetDay) + " " + time);
+  let output = dateToCurrentTime(timeClass.getFullYear(), timeClass.getMonth(), timeClass.getDate(), timeClass.getHours(), timeClass.getMinutes());
+  return output;
+}
+
+function getDateStrFromIndex(index) {
+  return (attdData[index].date).replace(/_/g,"/");
+}
+
+function packageStudentAttendanceData(targetStudent, callback) {
+  let arr = [[],[]] //the array holding the time in and time out
+
+  for(let i = 0; i < attdData.length; i++) {
+    let timeInStr = attdData[i].date + " " + attdData[i].students[targetStudent].timeIn;
+    let timeOutStr = attdData[i].date + " " + attdData[i].students[targetStudent].timeOut;
+
+    timeInStr = timeInStr.replace(/_/g,"/")
+    timeOutStr = timeOutStr.replace(/_/g,"/")
+
+    let timeIn = new Date(getDateStrFromIndex(i) + " " + attdData[i].students[targetStudent].timeIn)
+    let timeOut = new Date(getDateStrFromIndex(i) + " " + attdData[i].students[targetStudent].timeOut)
+
+    arr[0].push(dateToCurrentTime(timeIn.getFullYear(), timeIn.getMonth(), timeIn.getDate(), timeIn.getHours(), timeIn.getMinutes()));
+    arr[1].push(dateToCurrentTime(timeOut.getFullYear(), timeOut.getMonth(), timeOut.getDate(), timeOut.getHours(), timeOut.getMinutes()));
+  }
+  callback(arr);
 }
 
 function packageLatenessData() {
@@ -34,28 +121,9 @@ function packageLatenessData() {
     }
   }
   packagedLatenessData=arr;
-  //makeLatenessAreaChart();
+  makeLatenessAreaChart();
 }
 
-function packageAttendanceData() {
-  let targetStudent = currentUser;
-  let arr = [[],[]] //the array holding the time in and time out
-  for(let i = 0; i < attdData.length; i++) {
-    let timeInStr = attdData[i].date + " " + attdData[i].students[targetStudent].timeIn;
-    let timeOutStr = attdData[i].date + " " + attdData[i].students[targetStudent].timeOut;
-
-    timeInStr = timeInStr.replace(/_/g,"/")
-    timeOutStr = timeOutStr.replace(/_/g,"/")
-
-    let timeIn = new Date(timeInStr)
-    let timeOut = new Date(timeOutStr)
-
-    arr[0].push(dateToCurrentTime(timeIn.getFullYear(), timeIn.getMonth(), timeIn.getDate(), timeIn.getHours(), timeIn.getMinutes()));
-    arr[1].push(dateToCurrentTime(timeOut.getFullYear(), timeOut.getMonth(), timeOut.getDate(), timeOut.getHours(), timeOut.getMinutes()));
-  }
-  packagedAttendanceData=arr;
-  makeAttendanceAreaChart();
-}
 /*
 startDate = '2022/05/31'
 endDate = '2022_06_02'
@@ -67,42 +135,25 @@ endDateClass = new Date(endDate);
 currentDateClass = currentDateClass.addDays(1);
 */
 
-function generateAttdData(result) {
-  let datesListStr = result
-  datesListStr = datesListStr.replace(/'/g, '"'); //make the text valid JSON so it can be parsed into an array
-  let dates = JSON.parse(datesListStr);
-  dates.reverse();
-    
-  for(let i = 0; i < dates.length; i++) {
-    attdData.push([])
-  }
-  for (let i = 0; i < dates.length; i++) {
-    //get the corresponding date file (JSON) from the server
-
-    httpGetAsync("http://192.168.25.6:8080/static/past_attendance/" + dates[i], addDayToData, i); 
-  }
-}
-
 function addDayToData(data_text, index) {
   attdData[index] = JSON.parse(data_text);
 
-  done = true
-  for(let i = 0; i < attdData.length; i++) {
-    if(attdData[i].length==0) {
-      done = false;
+  for (let i = 0; i < attdData[index].students.length; i++) {
+    if(attdData[index].students[i].timeOut === "0:00") {
+      attdData[index].students[i].timeOut = attdData[index].students[i].timeIn;
     }
   }
 
-  if(done){
+  dateCounter++;
+  if(dateCounter == dateCounterTarget) {
     attdData.push([])
-    httpGetAsync("http://192.168.25.6:8080/static/Attendance.json", addCurrentDay); 
+    httpGetAsync("http://127.0.0.1:5000/static/piData/Attendance.json", addCurrentDay); 
   }
 }
 function addCurrentDay(data_text)
 {
   attdData[attdData.length-1] = JSON.parse(data_text);
   calcReasonTotals()
-
 }
 
 function calcReasonTotals() {
@@ -137,4 +188,4 @@ function getPastAttendanceData(){
   });
 }
 
-getPastAttendanceData()
+// getPastAttendanceData() //!

@@ -1,13 +1,13 @@
 placeholderData = [
     {
         label: "Your Arrival",
-        data: [ 480, 525, 525, 525 ],
+        data: packagedAttendanceData[0],
         backgroundColor: color.Green,
         borderColor: color.Green,
       },
       {
         label: "Your Arrival",
-        data: [ 500, 525, 525, 525 ],
+        data: packagedAttendanceData[1],
         backgroundColor: color.Red,
         borderColor: color.Red,
       },

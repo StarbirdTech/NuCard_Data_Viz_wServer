@@ -1,6 +1,6 @@
 const color = {
-  Green: "#fde025",
-  Red: "#ef5f8f",
+  Red: "#fde025",
+  Green: "#ef5f8f",
   //Green: "#32CD32",
   //Red: "#D21404",
   Blue: "#0077be",

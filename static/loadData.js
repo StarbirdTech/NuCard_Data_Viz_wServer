@@ -18,7 +18,7 @@ generateAttdData(); //!
 
 function generateAttdData(result = 0) {
   //!
-  let dates = ["2022_05_30.json", "2022_05_31.json"]; //!
+  let dates = ["2022_05_30.json", "2022_05_31.json", "2022_06_01.json", "2022_06_02.json",]; //!
   //let datesListStr = result //!
   //datesListStr = datesListStr.replace(/'/g, '"'); //make the text valid JSON so it can be parsed into an array //!
   //let dates = JSON.parse(datesListStr); //!
@@ -31,7 +31,6 @@ function generateAttdData(result = 0) {
   }
   for (let i = 0; i < dates.length; i++) {
     //get the corresponding date file (JSON) from the server
-    let dates = ["2022_05_30.json", "2022_05_31.json"];
     //httpGetAsync("http://192.168.25.6:8080/static/past_attendance/" + dates[i], addDayToData, i); //!
     httpGetAsync(
       "http://127.0.0.1:5000/static/piData/" + dates[i],
@@ -96,7 +95,7 @@ function packDailyAtd(targetDay, targetStudent) {
 function getSpecificAttd(targetDay, targetStudent, targetTime) {
   let time = attdData[targetDay].students[targetStudent][targetTime];
   if (time === "0:00") {
-    time = "12:00";
+    time = NaN;
   }
   let timeClass = new Date(getDateStrFromIndex(targetDay) + " " + time);
   let output = dateToCurrentTime(

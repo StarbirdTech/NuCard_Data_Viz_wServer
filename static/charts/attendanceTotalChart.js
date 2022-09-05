@@ -38,6 +38,7 @@ function makeAttendanceTotalChart(inputDataSet) {
     type: "line",
     data: attendanceTotalChartData,
     options: {
+      spanGaps: true,
       plugins: {
         legend: {
           display: false,
